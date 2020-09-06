@@ -1,0 +1,14 @@
+<view class="flex-column-center">
+		<image src="../../images/hua.png" class="url"></image>
+
+	<view class="top flex-column-center">
+		<text class="first_row">这个小程序将专门完成每日配送商品和自采购商品申请的订货申请。</text>
+		<text class="second_row"></text>
+	</view>
+</view>
+
+
+<view class="">
+	<button class="middle_btn" open-type="share" style="width: {{(windowWidth - 80)}}rpx;">邀请订货同事</button>
+
+</view>

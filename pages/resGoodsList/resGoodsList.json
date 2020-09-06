@@ -1,0 +1,10 @@
+{
+  
+  "navigationBarTitleText": "配送商品",
+
+  "usingComponents": {
+    "mymodal": "/components/mymodal/mymodal",
+    "addStandard": "/components/addStandard/addStandard" 
+
+  }
+}

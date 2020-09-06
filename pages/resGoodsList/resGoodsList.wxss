@@ -1,0 +1,16 @@
+
+
+
+.half-row{
+  width: 50%;
+}
+
+.nnn{
+  position: fixed;
+  bottom: 0;
+  z-index: 99999;
+  width: 100%;
+}
+
+/*  */
+

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订货群商品",
+  "usingComponents": {
+    "addIndependent": "/components/addIndependent/addIndependent",
+    "myIndependent": "/components/myIndependent/myIndependent"
+  }
+}

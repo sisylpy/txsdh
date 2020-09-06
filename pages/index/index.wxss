@@ -1,0 +1,161 @@
+/* pagesOrder/rIndex/rIndex.wxss */
+
+page{
+  background: #f2f6f7;
+}
+.body{
+  border: 1px solid lightgray;
+  border-radius: 20rpx;
+  background: #f8f8f8;
+
+}
+.form_top{
+  margin-top: 20rpx;
+}
+
+.face_view{
+  position: absolute;
+  right: 60rpx;
+  top: 20rpx;
+  /* width: 80rpx; */
+  /* height: 80rpx; */
+  /* margin-bottom: 20rpx; */
+}
+
+
+.face_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  /* margin-left: 20rpx; */
+  /* margin-top: 40rpx; */
+
+}
+
+.index{
+  width: 15%;
+  /* background: blue; */
+}
+
+
+/*  */
+
+
+.plusBtn{
+  position: fixed;
+  bottom: 60rpx;
+  display: block;
+}
+
+.order_btn{
+  background: #1e82b4;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 4px 4px 1px rgba(0, 0, 0, 0.308);
+
+}
+
+.icon_order{
+  width: 40rpx;
+  height: 45rpx;
+  margin-top: 40rpx;
+}
+
+/*  */
+
+.faceImg{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.applyFaceImg{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.form{
+  /* background: #fff; */
+  border-radius: 4rpx;
+  margin-top: 10rpx;
+  /* border: 1px solid rgba(211, 211, 211, 0.671); */
+  /* background: red; */
+}
+
+.form_title{
+  /* background: #2396cf; */
+  /* color: #fff; */
+  /* border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx; 0893d8 */
+  border-bottom: 1px dashed lightgray;
+  color: #0893d8;
+  font-size: 40rpx;
+  
+}
+
+.apply_row{
+  background: #fff;
+
+}
+
+
+/* operation */
+
+.nnn{
+  position: fixed;
+  bottom: 0;
+  z-index: 99999;
+  width: 100%;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.icon_operation{
+  padding: 20rpx 30rpx;
+  border: 1px solid yellow;
+}
+.text_operation{
+  font-size: 36rpx;
+}
+
+.icon_print{
+  width: 20rpx;
+  height: 20rpx;
+  position: relative;
+  margin-top: -20rpx;
+
+}
+/*  */
+
+.status{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+.status.is-active{
+  background: #1e82b4;
+  border: none;
+}
+.conectLine{
+  height: 8rpx;
+  background: #808080;
+}
+.conectLine.is-active{
+  background: #1e82b4;
+}
+.text1{
+  font-size: 24rpx;
+}
+
+
+.main{
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+

@@ -1,0 +1,128 @@
+
+<view id="mjltest" >
+
+<!-- top -->
+<view class="with-padding  normal customerPage" >
+	<text>{{fatherName}}</text>
+</view>
+<!-- ./top -->
+
+<!-- goods -->
+<view class="flex-column ">
+	<view class="flex-row-between   with-border-bottom  whiteBack with-padding" wx:for="{{goodsList}}" wx:key="nxDistributerGoodsId" wx:for-item="goods" wx:for-index="index"   >
+
+		<view class="">
+			<view class="flex-row normal">
+			  <view>
+				 	<image src="../../images/logo.jpg" class="icon" wx:if="{{goods.nxDistributerGoodsEntity.nxDgPullOff == 1}}"></image>
+				</view>
+				<text class="small" wx:if="{{goods.nxDdgDepGoodsBrand.length > 0 && goods.nxDdgDepGoodsBrand !==  'null'}}">[{{goods.nxDdgDepGoodsBrand}}]</text>
+				<text class="normal"> {{goods.nxDdgDepGoodsName}}</text>
+				<text class="small" wx:if="{{goods.nxDdgDepGoodsDetail.length > 0 && goods.nxDdgDepGoodsDetail !==  'null'}}">({{goods.nxDdgDepGoodsDetail}})</text>
+			</view>
+
+			<view class="flex-row with-tb-padding middle gray" style="width:{{windowWidth - 180}}rpx;">
+				<view class="flex-row half-row">
+					<text class="margin-l-right shrink_fix">规格:</text>
+					<text class="shrink_change"> {{goods.nxDdgDepGoodsStandardname}}</text>
+				</view>
+				<view class="flex-row half-row">
+					<text class="margin-l-right shrink_fix">产地:</text>
+					<text wx:if="{{goods.nxDdgDepGoodsPlace.length > 0 && goods.nxDdgDepGoodsPlace !== null}}" class="shrink_change"> {{goods.nxDdgDepGoodsPlace}}</text>
+				</view>
+			</view>
+
+			<view class="flex-row-default middle gray">
+				<text class="margin-l-right shrink_fix" >订货单位:</text>
+				<view class="flex-row-wrap shrink_change">
+					<text class="standard margin_bottom">{{goods.nxDdgDepGoodsStandardname}}</text>
+					<text class="standard margin_bottom" 
+					wx:if="{{goods.nxDepStandardEntities.length > 0}}" 
+					wx:for="{{goods.nxDepStandardEntities}}"  wx:for-index="standardIndex"
+					wx:for-item="standard" wx:key="nxDepartmentStandardId"
+					 catchtap="clickStandard"  data-name="{{goods.nxDdgDepGoodsName}}" 
+					 data-index="{{index}}" 
+					 data-standardname="{{standard.nxDdsStandardName}}" 
+					 data-itemstandard="{{standard}}"
+					 data-item="{{goods}}" hover-class="hover"
+					 
+					 >{{standard.nxDdsStandardName}}</text>
+
+					 <text wx:if="{{goods.nxDepStandardEntities.length < 5}}" class="standardPlus margin_bottom" bindtap="addStandard" data-item="{{goods}}"
+					 data-name="{{goods.nxDdgDepGoodsName}}"  data-index="{{index}}" hover-class="hover">+</text>
+				</view>
+			</view>
+		</view>
+
+
+		<view  class="btnClick " bindtap="openOperation" data-item="{{goods}}"  data-index="{{index}}" hover-class="hover">
+			<image class="{{goods.isShow ? 'icon' : 'icon_jiantou'}}" 
+			src="{{goods.isShow ? '../../images/duihao.png' : '../../images/jiantouxia.png'}}"></image>
+		</view>
+
+	</view>
+
+</view>
+
+
+</view>
+
+
+<view class='mask {{showOperation ? "is-active" : ""}}' catchtouchmove='ture' catchtap="hideMask" style="height:{{maskHeight > windowHeight ? maskHeight : windowHeight}}rpx;"  catchtouchmove='ture'>
+
+
+   <view class=" mmm whiteBack" wx:if="{{showStandard}}"  style="margin-top:{{(windowHeight - 240)/2 }}rpx;margin-left: 50rpx; width:{{windowWidth - 100}}rpx;">
+	   <view class="with-padding margin_bottom with-border-bottom"  bindtap="edit">
+		    编辑
+		 </view>
+		 <view class="with-padding" bindtap="delete">删除</view>
+	 </view>
+ 
+
+	<view class="flex-column nnn whiteBack"  wx:else  > 
+
+	<view class="with-padding flex-column-center with-border-bottom" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' >
+			<view class="close_line " style="width:{{windowWidth / 8}}rpx; "></view>
+			<view class="weight_five normal">配送商品</view>
+		</view>
+
+	 <view class="with-border-bottom" >
+	  <view class="flex-row with-padding">
+			<image src="{{disSrc}}" class="operation_url"></image>
+			<view class="flex-column">
+				<text>{{disName}}</text>
+				<text class="gray smallGray">{{disIntroduce}}</text>
+			</view>
+		</view>
+
+	<view class="operation_row flex-row" bindtap="applyGoods" >
+			<image src="../../images/order.png" class="operation_icon"></image>
+			<text class="text_operation margin-right">订货</text>
+			<text>"{{item.nxDdgDepGoodsName}}"</text>
+		</view>
+	 </view>
+
+		
+
+		<!-- <view class="operation_row flex-row" bindtap="applyGoods" >
+			<image src="../../images/ashbin.png" class="operation_icon"></image>
+			<text class="text_operation margin-right">删除</text>
+						<text>"{{item.nxDdgDepGoodsName}}"</text>
+		</view> -->
+
+	</view>
+</view>
+
+
+
+
+<mymodal show="{{show}}" bindconfirm="confirm" bindcancle="cancle"  bindchangeStandard="changeStandard" 
+applyGoodsName="{{applyGoodsName}}" 
+applyGoodsId="{{applyGoodsId}}" 
+item="{{item}}"  
+applyStandardName="{{applyStandardName}}" 
+/>
+
+
+
+<addStandard show="{{showAdd}}" bindgetFocus="getFocus" bindconfirm="confirmStandard" bindcancle="cancle" depGoodsName="{{depGoodsName}}" standardName="{{standardName}}" edit="{{editStandard}}" standardName="{{standardName}}" myHeight="{{myHeight}}" />

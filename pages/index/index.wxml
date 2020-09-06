@@ -1,0 +1,216 @@
+<view class="" id='mjltest'>
+
+	<view class="body">
+		<view class="flex-column-center form_top">
+			<image src="../../images/order_icon.png" class="icon"></image>
+			<view class="middle">
+				<text class="margin-right">#{{depInfo.nxDepartmentName}}</text>
+				<text>订货单</text>
+			</view>
+		</view>
+
+		<view class="face_view flex-column-end" bindtap="toEdit">
+			<image class="face_img" src="{{userInfo.nxDuUrlChange == 1 ? url + userInfo.nxDuWxAvartraUrl : userInfo.nxDuWxAvartraUrl }}"></image>
+			<view class="extreamSmall">{{userInfo.nxDuWxNickName}}</view>
+		</view>
+
+		<view class="" style="height: {{windowHeight - 140 }}rpx;">
+			<view class="flex-column form " style="font-size: 34rpx;">
+				<scroll-view scroll-y style="height: {{windowHeight - 160}}rpx;">
+					<view class="apply_row  flex-column with-tb-padding margin_bottom" wx:for="{{applyArr}}" wx:key="date" wx:for-item="item" wx:for-index="index">
+						<view class="with-padding  form_title">
+							<view class="">{{item.date}} {{item.whatDay}}</view>
+							<view>
+								<text class="extreamSmall">{{item.complate}}/{{item.total}}</text>
+								<text class=" extreamSmall gray">已完成</text>
+
+							</view>
+						</view>
+
+
+						<view class="flex-row-between with-padding with-border-bottom normal" wx:for="{{item.arr}}" wx:for-item="apply" wx:key="nxDepartmentOrdersId" wx:for-index="applyIndex">
+
+							<view class="flex-row" wx:if="{{apply.nxDoGoodsType == 1 }}">
+								<text class="margin-right">{{applyIndex + 1}}.</text>
+								<text class="margin-right" > {{apply.nxDepIndependentGoodsEntity.nxDigGoodsName}}</text>
+								<text>{{apply.nxDoQuantity}}</text>
+							</view>
+
+							<view class="flex-row" wx:elif="{{apply.nxDoGoodsType == 0 }}">
+							
+								<view class="flex-column">
+									<view class="">
+										<text>{{applyIndex + 1}}. </text>
+										<text class="margin-right">{{apply.nxDistributerGoodsEntity.nxDgGoodsName}}</text>
+										<text>{{apply.nxDoQuantity}}{{apply.nxDoStandard}}</text>
+									</view>
+									<view class="remark small" wx:if="{{apply.nxDoRemark !== null && apply.nxDoRemark.length > 0}}">
+									<text class="empty">{{applyIndex + 1}}. </text>
+									 {{apply.nxDoRemark}}
+									</view>
+								</view>
+
+
+
+
+							</view>
+
+							<view class="flex-row">
+								<view class="flex-column-center">
+									<image src="{{apply.nxDepartmentUserEntity.nxDuUrlChange == 1 ? url + apply.nxDepartmentUserEntity.nxDuWxAvartraUrl : apply.nxDepartmentUserEntity.nxDuWxAvartraUrl }}" class="applyFaceImg"></image>
+									<text class="extreamSmall gray">{{apply.nxDepartmentUserEntity.nxDuWxNickName}}</text>
+								</view>
+
+								<view class="btnClick" bindtap="{{apply.nxDoIsAgent == 0 ? 'openOperation' : ''}}" data-item="{{apply}}" hover-class="hover">
+									<image src="{{apply.nxDoIsAgent == 0 ? '../../images/jiantouxia.png' : '../../images/logo.jpg'}}" class="icon_jiantou"></image>
+								</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+
+			</view>
+		</view>
+
+	</view>
+</view>
+
+
+<view class='plusBtn' style="left:{{windowWidth - 180}}rpx">
+	<view class="order_btn" bindtap="toResGoods">
+		<image class="icon_order" src="../../images/goods.png"></image>
+	</view>
+</view>
+
+
+
+<view class='mask {{showChoice ? "is-active" : ""}}'>
+	<view class='main' style="width:{{windowWidth/3 * 2}}rpx; ">
+
+		<!-- 分店列表 -->
+		<view class=" with-padding whiteBack">
+			<view class="with-padding with-border-bottom {{subArr.length -1 == index ? 'is-last' : ''}} flex-row-default" wx:for="{{subArr}}" wx:key="nxDepartmentId" wx:for-item="dep" bindtap="selectDepartment" data-id="{{dep.nxDepartmentId}}" data-index="{{index}}" hover-class="hover">
+				<text class='normal'>{{dep.nxDepartmentName}}</text>
+
+			</view>
+
+
+
+		</view>
+
+
+
+
+
+	</view>
+
+</view>
+
+<!-- catchtouchmove='ture'  -->
+<view class='mask {{showOperation ? "is-active" : ""}}' catchtap="hideMask" style="height:{{maskHeight < windowHeight ? windowHeight : maskHeight}}rpx;" catchtouchmove='ture'>
+	<view class="flex-column nnn whiteBack">
+		<view class="with-padding flex-column-center with-border-bottom" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'>
+			<view class="close_line " style="width:{{windowWidth / 8}}rpx; "></view>
+			<view class="weight_five normal">申请成功</view>
+		</view>
+
+		<view class="with-padding with-border-bottom flex-column-center">
+			<view class="flex-row with-padding">
+				<!-- <image src="../../images/logo.jpg" class="icon"></image> -->
+				<view class="flex-column-center" wx:if="{{applyItem.nxDoGoodsType == 0}}">
+					<view class="flex-row">
+						<view class="status is-active"></view>
+						<view class="conectLine {{applyItem.nxDoStatus  > 0 ? 'is-active' :''}}" style="width: {{windowWidth/ 3}}rpx;"></view>
+						<view class="status {{applyItem.nxDoStatus  > 0 ? 'is-active' :''}}"></view>
+						<view class="conectLine {{applyItem.nxDoStatus  > 2 ? 'is-active' :''}}" style="width: {{windowWidth/ 3}}rpx;"></view>
+						<view class="status {{applyItem.nxDoStatus  > 2 ? 'is-active' :''}}"></view>
+					</view>
+					<view class="flex-row extreamSmall">
+						<view class="">待出货</view>
+						<view class="conectLine1" style="width: {{windowWidth/ 4}}rpx;"></view>
+						<view class="">出货中</view>
+						<view class="conectLine1" style="width: {{windowWidth/ 4}}rpx;"></view>
+						<view class="">完成</view>
+					</view>
+
+
+				</view>
+
+				<view class="" wx:elif="{{applyItem.nxDoGoodsType == 1}}">
+					<view class="flex-row">
+						<view class="status is-active"></view>
+						<view class="conectLine {{applyItem.nxDoStatus  > 0 ? 'is-active' :''}}" style="width: {{windowWidth/ 3}}rpx;"></view>
+						<view class="status {{applyItem.nxDoStatus  > 0 ? 'is-active' :''}}"></view>
+						<view class="conectLine {{applyItem.nxDoStatus  > 2 ? 'is-active' :''}}" style="width: {{windowWidth/ 3}}rpx;"></view>
+						<view class="status {{applyItem.nxDoStatus  > 2 ? 'is-active' :''}}"></view>
+					</view>
+					<view class="flex-row extreamSmall">
+						<view class="">待采购</view>
+						<view class="conectLine1" style="width: {{windowWidth/ 4}}rpx;"></view>
+						<view class="">采购中</view>
+						<view class="conectLine1" style="width: {{windowWidth/ 4}}rpx;"></view>
+						<view class="">完成</view>
+					</view>
+				</view>
+
+
+			</view>
+			<view class="flex-column-center with-padding" wx:if="{{applyItem.nxDoStatus == 3 && applyItem.nxDoGoodsType == 0}}">
+				<text class="extreamSmall gray ">出货数量</text>
+				<text class="normal with-padding">{{applyItem.nxDoWeight}}{{applyItem.nxGoodsEntity.nxGoodsStandardname}}</text>
+			</view>
+		</view>
+
+
+
+
+		<view class="operation_row   flex-row" bindtap="{{applyItem.nxDoGoodsType == 0 ? 'applyGoods' : 'applyIndependent'}}">
+			<image src="../../images/order.png" class="operation_icon"></image>
+			<text class=" margin-right">订货</text>"
+			<text class="" wx:if="{{applyItem.nxDoGoodsType == 0}}">{{applyItem.nxDistributerGoodsEntity.nxDgGoodsName}}</text>
+			<text class="" wx:if="{{applyItem.nxDoGoodsType == 1}}">{{applyItem.nxDepIndependentGoodsEntity.nxDigGoodsName}}</text>
+			"
+
+		</view>
+
+		<view class="operation_row   flex-row " bindtap="{{applyItem.nxDoGoodsType == 0 ? 'editApply' : 'editIndependentApply'}}" wx:if="{{applyItem.nxDoStatus < 1}}">
+			<image src="../../images/edit.png" class="operation_icon" wx:if="{{applyItem.nxDoStatus < 1}}"></image>
+			<text class=" margin-right">修改</text>"
+			<view wx:if="{{applyItem.nxDoGoodsType == 0}}">
+				<text class=" margin-l-right "  >{{applyItem.nxDistributerGoodsEntity.nxDgGoodsName}}</text>
+				<text class="" >{{applyItem.nxDoQuantity}}{{applyItem.nxDoStandard}}</text>
+			</view>
+			<view wx:if="{{applyItem.nxDoGoodsType == 1}}">
+				<text class=" margin-l-right"  >{{applyItem.nxDepIndependentGoodsEntity.nxDigGoodsName}}</text>
+				<text class="" >{{applyItem.nxDoQuantity}}</text>
+			</view>
+			"
+		</view>
+
+		<view class="operation_row  flex-row" bindtap="deleteApply" wx:if="{{applyItem.nxDoStatus < 1}}">
+
+			<!-- ashbin_48.png -->
+			<image src="../../images/ashbin.png" class="operation_icon"></image>
+			<text class="margin-right">删除</text>
+			"
+			<view wx:if="{{applyItem.nxDoGoodsType == 0}}">
+				<text class=" margin-l-right "  >{{applyItem.nxDistributerGoodsEntity.nxDgGoodsName}}</text>
+				<text class="" >{{applyItem.nxDoQuantity}}{{applyItem.nxDoStandard}}</text>
+			</view>
+			<view wx:if="{{applyItem.nxDoGoodsType == 1}}">
+				<text class=" margin-l-right"  >{{applyItem.nxDepIndependentGoodsEntity.nxDigGoodsName}}</text>
+				<text class="" >{{applyItem.nxDoQuantity}}</text>
+			</view>
+			"
+		</view>
+
+
+	</view>
+</view>
+
+
+<mymodal show="{{show}}" bindconfirm="confirm" depStandardArr="{{depStandardArr}}" item="{{item}}" bindchangeStandard="changeStandard" bindcancle="cancle" applyStandardName="{{applyStandardName}}" applyNumber="{{applyNumber}}" applyRemark="{{applyRemark}}"  editApply="{{editApply}}" />
+
+
+<myIndependent showInd="{{showMyIndependent}}" bindconfirm="confirm" item="{{item}}" bindcancle="cancle" applyStandardName="{{applyStandardName}}" applyNumber="{{applyNumber}}"   
+editApply="{{editApply}}" />

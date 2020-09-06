@@ -1,0 +1,25 @@
+/* components.wxss */
+
+.bigButton {
+  width: 100%;
+  height: 120rpx;
+  font-size: 30rpx;
+}
+
+.url {
+  height: 50rpx;
+  width: 50rpx;
+  float: left;
+  margin-top: 40rpx;
+  margin-left: 20rpx;
+}
+
+.content {
+  line-height: 120rpx;
+  font-size: 38rpx;
+  float: left;
+  margin-left: 45rpx;
+}
+.hover{
+  background: rgba(236, 236, 236, 0.808);
+}

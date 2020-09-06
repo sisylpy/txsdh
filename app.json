@@ -1,0 +1,26 @@
+{
+  
+  "pages":[
+    "pages/index/index",
+    "pages/resGoods/resGoods",
+    "pages/resGoodsList/resGoodsList",
+    "pages/inviteAndOrder/inviteAndOrder",
+    "pages/depUserEdit/depUserEdit",
+    "pages/depUserRegister/depUserRegister",
+    "pages/groupUserRegister/groupUserRegister",
+    "pages/login/login"
+
+  ],
+  "window":{
+    "backgroundColor": "#e3f3fc",
+    "navigationBarBackgroundColor": "#ecebeb",
+    "navigationBarTitleText": "特鲜配",
+    "navigationBarTextStyle":"black"
+  },
+  "sitemapLocation": "sitemap.json",
+
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}

@@ -1,0 +1,30 @@
+
+
+<view class='mask' wx:if='{{show}}' catchtouchmove='ture'>
+	<view class='modal-content' style="height:{{myHeight}}rpx; ">
+
+
+		<view class="body">
+
+			<view class="">
+        <text class="title">{{depGoodsName}}</text>
+				<view class="number1">
+					<input class='standardInput' focus='true' type='text' bindinput="getStandard" value='{{standardName}}' bindfocus="getFocus" placeholder="添加订货单位"/>
+				</view>
+			</view>
+
+     	<view class="btn_row" >
+       		<view class='btn sureBtn' catchtap='confirm' hover-class="hover">确定</view>
+
+				<view class='btn cancleBtn' bindtap="cancle" hover-class="hover">取消</view>
+			</view>
+
+		
+
+
+
+
+		</view>
+
+	</view>
+</view>

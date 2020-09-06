@@ -1,0 +1,64 @@
+<!--components/shareButton/mymodal.wxml-->
+<view class='mask' wx:if='{{show}}' catchtouchmove='ture'>
+	<view class='modal-content'>
+
+		<view class="top">
+			<view class='goodsTitle'>
+				<text >{{item.nxDdgDepGoodsName}}</text>
+			</view>
+		</view>
+
+		<view class="body">
+			<view class='goods_contents'>
+
+				<view class="flex_row_between with-padding">
+					<text class="explain">订货数量</text>
+					<view class="rightPart">
+							<input class='numberInput' focus='true' type='digit' 
+							value="{{applyNumber}}" bindinput="getApplyNumber" hold-keyboard='true'></input>
+               <!-- <text>{{applyStandardName}}</text> -->
+					</view>
+				</view>
+
+				<view class="flex-row-default flex_row_between1 with-padding">
+					<text class="explain shrink_fix">订货规格</text>
+					<view class=" flex-row-wrap shrink_change rightPart">
+						<text class="standardName {{applyStandardName == item.nxDdgDepGoodsStandardname ? 'is-active' : ''}}" bindtap="changeStandard" data-name="{{item.nxDdgDepGoodsStandardname}}" >{{item.nxDdgDepGoodsStandardname}}</text>
+						
+							<text  class="standardName {{applyStandardName == standard.nxDdsStandardName ? 'is-active' : ''}}" bindtap="changeStandard" data-name="{{standard.nxDdsStandardName}}" wx:for="{{item.nxDepStandardEntities}}" wx:key="nxDdsDdsGoodsId"
+            wx:for-item="standard">{{standard.nxDdsStandardName}}</text>
+					
+					</view>
+
+				</view>
+
+				<view class="flex_row_between with-padding">
+					<text class="explain">备注:</text>
+					<view class="rightPart" >
+					<input class="remarkInput" bindinput="addRemark" value="{{applyRemark}}"></input>
+					</view>
+				</view>
+
+
+			</view>
+
+			<view class='btn-wrapper'>
+
+				<!-- <view class="btn_left flex-row" > -->
+
+					<!-- <view class="" style="margin-right: 10rpx;">通知加急</view>
+					<view class="">
+						<switch type="checkbox" checked="{{switch2Checked}}" bindchange="switchChange" />
+					</view>
+				</view> -->
+
+				<view class="btn_row">
+					<text class='cancel-btn' bindtap="cancle">取消</text>
+					<text class='confirm-btn' catchtap='confirm'>确定</text>
+				</view>
+			</view>
+		</view>
+
+	</view>
+</view>
+

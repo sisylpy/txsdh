@@ -1,0 +1,5 @@
+<!--components.wxml-->
+ <view class='bigButton' bindtap='toWhere'  hover-class="hover">
+    <image src="{{imgUrl}}"  class='url'></image>
+    <text class='content'>{{content}}</text>
+  </view>

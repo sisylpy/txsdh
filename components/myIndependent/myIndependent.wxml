@@ -1,0 +1,42 @@
+<!--components/shareButton/mymodal.wxml-->
+<view class='mask' wx:if='{{showInd}}' catchtouchmove='ture'>
+	<view class='modal-content'>
+
+		<view class="top">
+			<view class='goodsTitle'>
+				<text>{{item.nxDigGoodsName}}</text>
+				<!-- <text class='smallclose' bindtap='cancel'>X</text> -->
+			</view>
+		</view>
+
+		<view class="body">
+
+			<view class='goods_contents'>
+
+				<view class="number_content with-lr-padding">
+					<text class="explain">订货数量:</text>
+					<view class="number">
+							<input class='inputNumber' focus='true' type='text' value="{{applyNumber}}" bindinput="getQuantity"></input>
+					</view>
+				</view>
+
+
+
+
+
+			</view>
+
+			<view class='btn-wrapper'>
+				<view class="btn_row">
+					<text class='cancel-btn' bindtap="cancle">取消</text>
+					<text class='confirm-btn' catchtap='confirm'>确定</text>
+				</view>
+
+			</view>
+
+
+
+		</view>
+
+	</view>
+</view>

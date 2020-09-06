@@ -1,0 +1,26 @@
+<!--components/shareButton/mymodal.wxml-->
+<view class='mask' wx:if='{{show}}' catchtouchmove='ture'>
+
+  <view class='modal-content' style="height:{{carArr.length * 100 + 76}}rpx; width:{{windowWidth}}rpx; top:{{windowHeight - carArr.length * 80 - 140 - 76}}rpx;">
+
+    <view class="car-top">
+      <text class="car-top-words">已选商品</text>
+      <text class="car-top-words" bindtap="emptyApplyArr">清空</text>
+    </view>
+
+    <view class="one-row" wx:for="{{carArr}}" wx:key="index" wx:for-item="item">
+      <view class="car-left">
+        <view class="aaa">
+          <text>{{item.nxCommunityGoodsEntity.nxCgGoodsName}}</text>
+          <text>{{item.nxOsQuantity}}{{item.nxOsStandard}}</text>
+        </view>
+      </view>
+
+      <view class="car-right flex-row">
+        <text class="applyNumberBtn" bindtap="reduceNumber" data-id="{{item.nxOtItemId}}" data-index="{{index}}" >-</text>
+        <text>{{item.nxOsQuantity}}</text>
+        <text class="applyNumberBtn" bindtap="addNumber" data-id="{{item.nxOtItemId}}" data-index="{{index}}">+</text>
+      </view>
+    </view>
+  </view>
+</view>

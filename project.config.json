@@ -1,0 +1,128 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
+	"appid": "wx1ea78d3f33234284",
+	"projectname": "caidi",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/groupUserRegister/groupUserRegister",
+					"pathName": "pages/groupUserRegister/groupUserRegister",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/depUserEdit/depUserEdit",
+					"pathName": "pages/depUserEdit/depUserEdit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/depUserRegister/depUserRegister",
+					"pathName": "pages/depUserRegister/depUserRegister",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/inviteAndOrder/inviteAndOrder",
+					"pathName": "pages/inviteAndOrder/inviteAndOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/depUserRegister/depUserRegister",
+					"pathName": "pages/depUserRegister/depUserRegister",
+					"query": "depId=1&disId=1",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "pages/resGoodsList/resGoodsList",
+					"pathName": "pages/resGoodsList/resGoodsList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/resGoods/resGoods",
+					"pathName": "pages/resGoods/resGoods",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

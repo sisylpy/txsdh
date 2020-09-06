@@ -1,0 +1,38 @@
+<view class='container'>
+
+	<!-- 顶部 -->
+	<view class='top flex-column-center '>
+		加入{{depName}}.订货群
+
+	</view>
+
+	<view class='with-padding with-margin-top with-lr-margin' style='height: {{windowHeight - 240}}rpx; background:white;'>
+		<!-- 文字 -->
+		<!--  -->
+		<view class="flex-column-center">
+
+			<view class="flex-column-center">
+				<text class="first_row">大家从今天开始用手机订货吧！</text>
+				<text class="second_row">配送鲜 是专门为生鲜配送的微信小程序，完成多部门的采购任务。</text>
+			</view>
+
+			<image src="../../images/shenqing_icon.png" class='url'></image>
+
+		</view>
+
+
+		<!-- 按钮 -->
+		<view class="flex-column-center " style="">
+			<button class="addBtn {{addFinished ? 'next' : ''}} " open-type='getUserInfo' data-type="0" bindgetuserinfo='getUserInfo' plain='true' style="width: {{windowWidth - 80}}rpx;">注册</button>
+		</view>
+	
+
+	<view class='log_btn'>
+			<button class='' open-type='getUserInfo' bindgetuserinfo='getUserInfo' plain='true' style="width: {{windowWidth - 80}}rpx;" data-type="1">登陆</button>
+		</view>
+
+	</view>
+
+
+
+</view>

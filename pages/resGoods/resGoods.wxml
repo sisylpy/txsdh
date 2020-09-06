@@ -1,0 +1,135 @@
+<view class="customerPage" id="mjltest">
+
+	<!-- <view class="search_content with-padding with-border-bottom ">
+    <input bindinput="getGoodsName" focus='{{input ? "true" : "" }}' value="{{searchStr}}"></input>
+    <icon class="wx_icon" type="search" size="30" color="white"></icon>
+  </view> -->
+
+
+	<view class='navbar whiteBack  with-tb-padding with-border-bottom-main'>
+		<block wx:for="{{tabs}}" wx:for-item="tabs" wx:key="id">
+			<view id="{{index}}" class="navbar-item {{tab1Index==index?'bar-item-on':''}}" data-index='{{index}}' bindtap='onTab1Click'>
+				<view class='navbar-title'>{{tabs.words}}
+					<text wx:if="{{isSearching}}">({{tabs.amount}})</text>
+				</view>
+			</view>
+		</block>
+		<view class="navbar-slider" style="left: {{sliderLeft}}px; width:{{windowWidth /2}}rpx; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+	</view>
+
+
+
+	<view class="">
+		<swiper style="height: {{windowHeight - 120}}rpx;" bindtransition="swiperTran" bindanimationfinish="animationfinish" current="{{itemIndex}}" bindchange='swiperChange' data-index='{{itemIndex}}'>
+
+			<!-- Part-one -->
+			<swiper-item>
+				<scroll-view scroll-y style="height:{{windowHeight - 120}}rpx">
+					<view class="felx-column  whiteBack margin_bottom normal " wx:for="{{depGoodsArr}}" wx:for-item="greatGrand" wx:for-index="greatGrandIndex" wx:key="nxDistributerFatherGoodsId">
+						<view class="with-border-bottom with-padding ">
+							<text class="">{{greatGrand.nxDfgFatherGoodsName}}</text>
+						</view>
+
+						<view class="felx-column" wx:for="{{greatGrand.fatherGoodsEntities}}" wx:for-item="grand" wx:for-index="grandIndex" wx:key="nxDistributerFatherGoodsId">
+							<view class=" with-padding with-border-bottom flex-row-between" bindtap="showOrHide" data-greatindex="{{greatGrandIndex}}" data-grandindex="{{grandIndex}}">
+								<text class=" ">{{grand.nxDfgFatherGoodsName}}</text>
+								<image src="../../images/jian.png" class="show_icon" wx:if="{{grand.isShow}}"></image>
+								<image src="../../images/jia.png" class="show_icon" wx:else></image>
+
+
+							</view>
+							<!-- father hide -->
+							<view class="with-padding with-border-bottom hideView {{grand.isShow ? 'is-active' : ''}}" wx:for="{{grand.fatherGoodsEntities}}" wx:key="nxDistributerFatherGoodsId" wx:for-item="father" wx:for-index="fatherIndex" bindtap="toGoodsList" data-id="{{father.nxDistributerFatherGoodsId}}" hover-class="hover" data-name="{{father.nxDfgFatherGoodsName}}">
+								<view class="flex-row-between ">
+									<!-- {{greatGrandIndex + 1}}.{{grandIndex + 1}}.{{fatherIndex + 1}}   -->
+									<text class="">{{father.nxDfgFatherGoodsName}}
+									</text>
+									<image src="../../images/arrow-right-2.png" class="icon"></image>
+								</view>
+							</view>
+							<view>
+								<!-- <text class="explain-words ">{{grand.subAmount}}个 商品</text> -->
+							</view>
+						</view>
+					</view>
+
+				</scroll-view>
+
+
+			</swiper-item>
+
+			<!-- ../Part-one  -->
+
+			<swiper-item>
+				<scroll-view scroll-y style="height:{{windowHeight - 120}}rpx">
+					<view class=" whiteBack margin_bottom" wx:for="{{independentArr}}" wx:key="letter" wx:for-index="pareIndex">
+
+						<view class="whiteBack with-padding with-border-bottom flex-column">
+							<view class="normal">{{item.letter}}</view>
+						</view>
+
+						<view class="with-border-bottom whiteBack with-padding flex-row-between" wx:for="{{item.list}}" wx:key="nxDepartmentIndependentGoodsId" wx:for-item="goods" wx:for-index="indIndex">
+							<view class="normal">{{goods.nxDigGoodsName}}</view>
+							<view class="btnClick" bindtap="openOperation" data-item="{{goods}}" data-index="{{indIndex}}" data-pareindex="{{pareIndex}}" hover-class="hover">
+								<image src="{{goods.isShow ? '../../images/duihao.png' : '../../images/jiantouxia.png'}}" class="{{goods.isShow ? 'icon' : 'icon_jiantou'}}"></image>
+							</view>
+						</view>
+					</view>
+
+				</scroll-view>
+
+				<view class='plusBtn' style="left:{{windowWidth - 140}}rpx" bindtap="addIndependent">
+					<view class="order_btn" hover-class="hover">
+						<image class="icon_order" src="../../images/goodsjia.png"></image>
+					</view>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+</view>
+
+
+
+
+<view class='mask {{showOperation ? "is-active" : ""}}' catchtouchmove='ture' catchtap="hideMask" style="height:{{maskHeight < windowHeight ? windowHeight : maskHeight}}rpx;" catchtouchmove='ture'>
+
+	<view class="flex-column nnn whiteBack" >
+
+		<view class="with-padding flex-column-center with-border-bottom" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'>
+			<view class="close_line " style="width:{{windowWidth / 8}}rpx; "></view>
+			<view class="weight_five normal">自采购商品</view>
+		</view>
+
+
+
+			<view class="operation_row   flex-row" bindtap="applyIndependent">
+				<image src="../../images/order.png" class="operation_icon"></image>
+				<text class="text_operation margin-right">订货</text>
+				<text>"{{item.nxDigGoodsName}}"</text>
+
+			</view>
+
+			<view class="operation_row flex-row " bindtap="edit">
+				<image src="../../images/edit.png" class="operation_icon"></image>
+				<text class="text_operation margin-right">修改</text>
+					<text>"{{item.nxDigGoodsName}}"</text>
+			</view>
+
+			<view class="operation_row flex-row" bindtap="delete">
+				<image src="../../images/ashbin.png" class="operation_icon"></image>
+				<text class="text_operation margin-right">删除</text>
+				<text>"{{item.nxDigGoodsName}}"</text>
+
+			</view>
+
+
+
+	</view>
+
+</view>
+
+
+
+<myIndependent showInd="{{showMyIndependent}}" bindconfirm="confirmOrderIndenpendent" item="{{item}}" bindcancle="cancle"  />
+
+<addIndependent show="{{showIndependent}}" bindconfirm="confirmAdd" editIndependent="{{editIndependent}}" item="{{item}}" bindcancle="cancle" bindgetFocus="getFocus" myHeight="{{myHeight}}" />

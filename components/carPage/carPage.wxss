@@ -1,0 +1,79 @@
+/* components/shareButton/mymodal.wxss */
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* display: flex; *//* justify-content: center; */
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; 
+}
+
+.modal-content {
+  background: #fff;
+  position: fixed;
+  
+}
+.car-top{
+    display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  padding-right: 60rpx;
+  background: lightgray;
+}
+
+.car-top-words{
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+.one-row{
+  /* background: red; */
+  display: flex;
+  flex-flow: row nowrap;
+  height: 80rpx;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+
+
+}
+
+.car-left{
+  /* background: green; */
+  width: 80%;
+    /* height: 100rpx; */
+  
+}
+.aaa{
+   display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  padding-right: 60rpx;
+}
+
+
+
+.car-right{
+  /* background: beige; */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 20%;
+
+}
+
+.applyNumberBtn{
+  width: 45rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  text-align: center;
+  border:  1px solid gray;
+  border-radius: 50%;
+}

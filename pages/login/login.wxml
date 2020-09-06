@@ -1,0 +1,21 @@
+<view class=''>
+
+	<view class='flex-column-center with-padding'>
+		<view class='log'>
+			<image class='log_img' src='../../images/logo.jpg'></image>
+		</view>
+		<view class='word'>特鲜送</view>
+
+
+		<!-- 登录按钮 -->
+	
+		<view class='log_btn' style="width: {{windowWidth - 40}}rpx;">
+			<button class='' open-type='getUserInfo' bindgetuserinfo='getUserInfo' plain='true' data-type="login" style="width: {{windowWidth - 40}}rpx;">订货员微信登陆</button>
+		</view>
+	</view>
+
+
+
+
+
+</view>

@@ -1,0 +1,253 @@
+/* components/shareButton/mymodal.wxss */
+
+.mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* display: flex; *//* justify-content: center; */
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9995;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.modal-content {
+  width: 90%;
+  height: 50%;
+  left: 5%;
+  top: 3%;
+  background-color: #fff;
+  position: fixed;
+}
+
+.top {
+  height: 20%;
+  width: 100%;
+  background: rgb(27, 27, 27);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-items: center;
+  justify-content: center;
+}
+
+.goodsTitle {
+  font-size: 60rpx;
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  /* background: yellow; */
+  padding: 10rpx 20rpx;
+}
+
+.smallclose {
+  width: 50rpx;
+  height: 50rpx;
+  line-break: 60rpx;
+  border: 2px solid white;
+  border-radius: 50%;
+  float: right;
+  margin-right: 10rpx;
+  font-size: 36rpx;
+  text-align: center;
+}
+
+/* 2 */
+
+.body {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 80%;
+  align-content: stretch;
+}
+
+.goods_contents {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  flex-basis: 75%;
+  justify-content: space-around;
+  padding-top: 10rpx;
+}
+
+.with-lr-padding {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+/* 1, */
+
+.number_content {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-basis: 50%;
+  align-items: center;
+  /* background: green; */
+}
+
+/* 3 */
+
+.standards_content {
+  display: flex;
+  flex-flow: row nowrap;
+  /* align-items: center; */
+  flex-basis: 50%;
+  /* background: pink; */
+}
+
+.explain {
+  font-size: 38rpx;
+  /* color: gray; */
+  /* background: red; */
+  flex-basis: 45%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  /* line-height: 90rpx; */
+}
+
+.number {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  /* background: blue; */
+  flex-basis: 55%;
+}
+
+.int {
+  border: 1px solid gray;
+  border-radius: 20rpx;
+  height: 80rpx;
+  width: 60%;
+}
+
+.inputint {
+  height: 100%;
+  text-align: center;
+}
+.price_standard{
+  font-size: 40rpx;
+  
+}
+/* 单位 */
+
+.select_content {
+  /* background: palegreen; */
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+
+  flex-basis: 65%;
+
+}
+
+.standardName {
+  font-size: 38rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
+  /* line-height: 90rpx; */
+  background: #289199;
+  margin-right: 40rpx;
+  border-radius: 10rpx;
+  border: 1px solid rgb(230, 230, 230);
+  color: #fff;
+
+}
+
+.addBtn{
+   font-size: 38rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
+  /* line-height: 90rpx; */
+  background: #c49602;
+  margin-right: 40rpx;
+  border-radius: 10rpx;
+  border: 1px solid rgb(230, 230, 230);
+  color: #fff;
+}
+
+.standardName.is-active {
+  background: #289199;
+  color: #fff;
+}
+
+.btn-wrapper {
+  /* background: gray; */
+  flex-basis: 25%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.btn_row {
+  width: 50%;
+  margin-left: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  font-size: 36rpx;
+  align-items: center;
+  /* background: yellow; */
+}
+
+.confirm-btn {
+  /* background: red; */
+  color: #289199;
+}
+
+.cancel-btn {
+  /* background: purple; */
+}
+
+.modal-btn-wrapper .cancel-btn {
+  color: rgb(90, 89, 89);
+}
+
+.icon_remark {
+  width: 40rpx;
+  height: 40rpx;
+  /* background: red; */
+  margin-right: 4rpx;
+}
+
+.inputBox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 94%;
+  padding: 15rpx 3%;
+  background: #fff;
+  z-index: 9999;
+  display: none;
+  border-bottom: 1px solid gray;
+}
+
+.inputBox.is-active {
+  display: block;
+}
+
+.input {
+  /* background: red; */
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  /* border-bottom: 1px solid gray; */
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  align-content: space-between;
+}

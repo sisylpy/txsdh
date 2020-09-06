@@ -1,0 +1,43 @@
+
+
+<view class="flex-column middle">
+
+<!-- <view class="flex-row-between with-padding" style="background: #0893d8;color:#fff;">
+	 	<text class=" "></text>
+		 <text class="saveBtn {{canSave ? 'is-active' : ''}}" >保存</text>
+	 </view> -->
+
+
+ <view class="with-padding with-padding flex-column ">
+    <text class="gray">用户头像</text>
+     <image class='class_img' src='{{src}}' bindtap='choiceImg'></image>
+
+  </view>
+
+
+   <view class="with-padding flex-column ">
+    <text class="gray">用户名</text>
+    <input class="group_input normal" value="{{userInfo.nxDuWxNickName}}" bindinput="getUserName"> </input>
+  </view>
+
+  <view class="with-padding  flex-column ">
+  <text class="gray">显示订货历史</text>
+  <view>
+  	<radio-group class="radio-group" bindchange="radioChange">
+				<label class="radio" wx:for="{{items}}" wx:key="value">
+					<radio value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}周内
+				</label>
+			</radio-group>
+  </view>
+  </view>
+
+
+<view class="saveBtn {{canSave ? 'is-active' : ''}}" bindtap="{{canSave ? 'save' : ''}}">保存</view>
+
+
+
+
+
+
+
+</view>

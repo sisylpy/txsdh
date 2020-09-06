@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mymodal": "/components/mymodal/mymodal",
+    "myIndependent": "/components/myIndependent/myIndependent"
+
+  }
+}
