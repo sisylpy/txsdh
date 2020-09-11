@@ -70,7 +70,7 @@
 					"id": 1,
 					"name": "pages/groupUserRegister/groupUserRegister",
 					"pathName": "pages/groupUserRegister/groupUserRegister",
-					"query": "",
+					"query": "disId=1&depId=1&depName=hualian",
 					"scene": null
 				},
 				{
@@ -91,7 +91,7 @@
 					"id": 4,
 					"name": "pages/depUserRegister/depUserRegister",
 					"pathName": "pages/depUserRegister/depUserRegister",
-					"query": "",
+					"query": "disId=1&depId=1&depName=桂林米粉",
 					"scene": null
 				},
 				{

@@ -14,7 +14,7 @@
 				<view class="flex_row_between with-padding">
 					<text class="explain">订货数量</text>
 					<view class="rightPart">
-							<input class='numberInput' focus='true' type='digit' 
+							<input class='numberInput' focus='true' type='digit'  
 							value="{{applyNumber}}" bindinput="getApplyNumber" hold-keyboard='true'></input>
                <!-- <text>{{applyStandardName}}</text> -->
 					</view>

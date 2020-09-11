@@ -91,7 +91,6 @@ Page({
      load.showLoading("获取配送商品")
     depGetDepGoods(data).then(res => {
       if (res.result.page) {
-        console.log(res.result.page);
         load.hideLoading();
         this.setData({
           goodsList: res.result.page.list,
@@ -103,11 +102,7 @@ Page({
         //选择id
         query.select('#mjltest').boundingClientRect()
         query.exec(function (res) {
-          //res就是 所有标签为mjltest的元素的信息 的数组
-          console.log(res);
-          //取高度
-          console.log(res[0].height);
-          that.setData({
+            that.setData({
             maskHeight: res[0].height * globalData.rpxR
           })
         })
@@ -142,9 +137,10 @@ Page({
   addStandard(e) {
     this.setData({
       showAdd: true,
-      index: e.currentTarget.dataset.index,
-      item: e.currentTarget.dataset.item,
-      depGoodsName: e.currentTarget.dataset.name,
+      // index: e.currentTarget.dataset.index,
+      // item: e.currentTarget.dataset.item,
+      // depGoodsName: e.currentTarget.dataset.name,
+      depGoodsName: this.data.item.nxDdgDepGoodsName,
       standardName: ""
     })
   },
@@ -187,11 +183,10 @@ Page({
     var depStandardId = this.data.itemStandard.nxDepartmentStandardId;
     depDeleteStandard(depStandardId).then(res =>{
       if(res.result.code == 0){
-        console.log(res);
         this._updateGoods();
       }else{
         wx.showToast({
-          title: '删除失败',
+          title: res.result.msg,
           icon: 'none'
         })
       }
@@ -203,7 +198,6 @@ Page({
  * @param {}} e 
  */
   confirmStandard(e) {
-    console.log(e);
     if (this.data.editStandard) {
       this._updateStandard(e);
     } else {
@@ -231,7 +225,6 @@ Page({
     depSaveStandard(data).
     then(res => {
       if (res) {
-        console.log(res);
         this._updateGoods();
       }
     })
@@ -248,7 +241,6 @@ Page({
     depUpdateStandard(data).
     then(res => {
       if (res) {
-        console.log(res)
         this._updateGoods();
       }
     })
@@ -360,8 +352,11 @@ Page({
     saveOrder(dg).then(res => {
       if (res.result.code == 0) {
         var isShow = "goodsList[" + this.data.index + "].isShow";
-        this.setData({
-          [isShow]: true,
+        // this.setData({
+        //   [isShow]: true,
+        // })
+        wx.showToast({
+          title: '保存成功',
         })
       }else{
         wx.showToast({
@@ -391,7 +386,6 @@ Page({
    */
 
   touchStart: function(e){
-    // console.log(e.touches[0].pageX)
     let sx = e.touches[0].pageX
     let sy = e.touches[0].pageY
     this.data.touchS = [sx,sy]
@@ -404,8 +398,7 @@ Page({
   touchEnd: function(e){
     let start = this.data.touchS
     let end = this.data.touchE
-    console.log(start)
-    console.log(end)
+   
     if(this.data.touchS && this.data.touchE){
       if(start[1] < end[1] - 30){
         this.setData({

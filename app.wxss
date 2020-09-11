@@ -306,6 +306,9 @@
 .margin_bottom{
   margin-bottom: 20rpx;
 }
+.margin_top{
+  margin-top: 20rpx;
+}
 .margin_l_bottom{
   margin-bottom: 10rpx;
 }
@@ -500,4 +503,51 @@
 .remark{
   /* margin-left: 60rpx; */
   color: #006efd;
+}
+
+
+
+/*  */
+.emptyView{
+  /* display: block; */
+  position: relative;
+  border-top: 1px solid lightgray;
+
+
+}
+.emptyView.hidden{
+  display: none;
+}
+
+.aaa{
+  margin: 0 auto;
+}
+
+
+
+.fixed{
+  flex-shrink: 0;
+}
+.order_user{
+  font-size: 30rpx;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.userName{
+  overflow: hidden;
+  /* flex-shrink: 1;
+  min-width: 0; */
+  white-space: nowrap;
+
+
+}
+
+.stopOrder{
+  background: lightslategrey;
+  color: #fff;
+  font-size: 26rpx;
+  padding: 6rpx 6rpx;
+  text-align: center;
+  border-top: 10rpx;
+  
 }

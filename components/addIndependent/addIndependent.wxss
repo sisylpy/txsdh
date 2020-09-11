@@ -67,3 +67,14 @@
 .btn{
   font-size: 34rpx;
 }
+
+.margin_top{
+  margin-top: 20rpx;
+
+}
+.margin_bottom{
+  margin-bottom: 20rpx;
+}
+.normal{
+  font-size: 38rpx;
+}

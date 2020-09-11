@@ -29,7 +29,7 @@ Page({
     this.setData({
       windowWidth: globalData.windowWidth * globalData.rpxR,
       windowHeight: globalData.windowHeight * globalData.rpxR,
-      fatherDepId: options.depId,
+      depFatherId: options.depId,
       disId: options.disId,
       depName: options.depName,
       showDepartment: false,
@@ -37,7 +37,7 @@ Page({
     })
 
     load.showLoading("获取子部门")
-    getSubDepartments(this.data.fatherDepId).then(res => {
+    getSubDepartments(this.data.depFatherId).then(res => {
       if (res.result.code == 0) {
         load.hideLoading();
         this.setData({
@@ -67,15 +67,12 @@ Page({
   },
 
   selDepartment(e) {
-    console.log(e);
     var id = e.currentTarget.dataset.id;
     var name = e.currentTarget.dataset.name;
-    console.log(id);
     this.setData({
       selDepartmentName: name,
       showDepartment: false,
       nxDuDepartmentId: id,
-
     })
 
   },
@@ -98,7 +95,7 @@ Page({
                 nxDuAdmin: 0,
                 nxDuDepartmentId: this.data.nxDuDepartmentId,
                 nxDuDistributerId: this.data.disId,
-                nxDuDepartmentFatherId: this.data.fatherDepId,
+                nxDuDepartmentFatherId: this.data.depFatherId,
               }
 
               load.showLoading("保存用户中")
@@ -106,16 +103,13 @@ Page({
                 .then((res => {
                   load.hideLoading();
                   if (res.result.code == 0) {
-                    this.setData({
-                      userId: res.result.data,
-                    })
-
+                    //跳转首页
                     wx.redirectTo({
-                      url: '../../pages/index/index?userId=' + this.data.userId,
+                      url: '../../pages/index/index?userId=' + res.result.data,
                     })
                   } else {
                     wx.showToast({
-                      title: '请重新提交',
+                      title: '已注册,请直接登陆',
                       icon: 'none'
                     })
                   }
@@ -126,14 +120,10 @@ Page({
               depUserLogin(res.code)
                 .then((res) => {
                   load.hideLoading();
-                  if (res.result.code !== -1) {
-                    this.setData({
-                      userId: res.result.data.userInfo.nxDepartmentUserId,
-                    })
+                  if (res.result.code == 0) { 
                     wx.redirectTo({
-                      url: '../../pages/index/index?userId=' + this.data.userId,
+                      url: '../../pages/index/index?userId=' + res.result.data.userInfo.nxDepartmentUserId,
                     })
-
                   } else {
                     load.hideLoading();
                     wx.showToast({

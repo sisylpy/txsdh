@@ -14,7 +14,7 @@
 		<view class="">
 			<view class="flex-row normal">
 			  <view>
-				 	<image src="../../images/logo.jpg" class="icon" wx:if="{{goods.nxDistributerGoodsEntity.nxDgPullOff == 1}}"></image>
+				 	<!-- <image src="../../images/logo.jpg" class="icon" wx:if="{{goods.nxDistributerGoodsEntity.nxDgPullOff == 1}}"></image> -->
 				</view>
 				<text class="small" wx:if="{{goods.nxDdgDepGoodsBrand.length > 0 && goods.nxDdgDepGoodsBrand !==  'null'}}">[{{goods.nxDdgDepGoodsBrand}}]</text>
 				<text class="normal"> {{goods.nxDdgDepGoodsName}}</text>
@@ -23,12 +23,12 @@
 
 			<view class="flex-row with-tb-padding middle gray" style="width:{{windowWidth - 180}}rpx;">
 				<view class="flex-row half-row">
-					<text class="margin-l-right shrink_fix">规格:</text>
+					<text class="margin-l-right shrink_fix">单位:</text>
 					<text class="shrink_change"> {{goods.nxDdgDepGoodsStandardname}}</text>
 				</view>
-				<view class="flex-row half-row">
+				<view class="flex-row half-row" wx:if="{{goods.nxDdgDepGoodsPlace.length > 0 && goods.nxDdgDepGoodsPlace !== null}}">
 					<text class="margin-l-right shrink_fix">产地:</text>
-					<text wx:if="{{goods.nxDdgDepGoodsPlace.length > 0 && goods.nxDdgDepGoodsPlace !== null}}" class="shrink_change"> {{goods.nxDdgDepGoodsPlace}}</text>
+					<text  class="shrink_change"> {{goods.nxDdgDepGoodsPlace}}</text>
 				</view>
 			</view>
 
@@ -48,14 +48,16 @@
 					 
 					 >{{standard.nxDdsStandardName}}</text>
 
-					 <text wx:if="{{goods.nxDepStandardEntities.length < 5}}" class="standardPlus margin_bottom" bindtap="addStandard" data-item="{{goods}}"
-					 data-name="{{goods.nxDdgDepGoodsName}}"  data-index="{{index}}" hover-class="hover">+</text>
+					 <!-- <text wx:if="{{goods.nxDepStandardEntities.length < 5}}" class="standardPlus margin_bottom" bindtap="addStandard" data-item="{{goods}}"
+					 data-name="{{goods.nxDdgDepGoodsName}}"  data-index="{{index}}" hover-class="hover">+</text> -->
 				</view>
 			</view>
 		</view>
 
 
-		<view  class="btnClick " bindtap="openOperation" data-item="{{goods}}"  data-index="{{index}}" hover-class="hover">
+    <view class="stopOrder" wx:if="{{goods.nxDistributerGoodsEntity.nxDgPullOff == 1}}">断货</view>
+		<view wx:else  class="btnClick " bindtap="openOperation" data-item="{{goods}}"  data-index="{{index}}" hover-class="hover">
+		
 			<image class="{{goods.isShow ? 'icon' : 'icon_jiantou'}}" 
 			src="{{goods.isShow ? '../../images/duihao.png' : '../../images/jiantouxia.png'}}"></image>
 		</view>
@@ -83,32 +85,32 @@
 
 	<view class="with-padding flex-column-center with-border-bottom" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd' >
 			<view class="close_line " style="width:{{windowWidth / 8}}rpx; "></view>
-			<view class="weight_five normal">配送商品</view>
+			<view class="weight_five normal with-s-padding">{{item.nxDdgDepGoodsName}}</view>
 		</view>
 
-	 <view class="with-border-bottom" >
-	  <view class="flex-row with-padding">
+	<view class="with-border-bottom" >
+	  <!--  <view class="flex-row with-padding">
 			<image src="{{disSrc}}" class="operation_url"></image>
 			<view class="flex-column">
 				<text>{{disName}}</text>
 				<text class="gray smallGray">{{disIntroduce}}</text>
 			</view>
-		</view>
+		</view> -->
 
 	<view class="operation_row flex-row" bindtap="applyGoods" >
 			<image src="../../images/order.png" class="operation_icon"></image>
 			<text class="text_operation margin-right">订货</text>
-			<text>"{{item.nxDdgDepGoodsName}}"</text>
+			<!-- <text>"{{item.nxDdgDepGoodsName}}"</text> -->
 		</view>
 	 </view>
 
 		
 
-		<!-- <view class="operation_row flex-row" bindtap="applyGoods" >
-			<image src="../../images/ashbin.png" class="operation_icon"></image>
-			<text class="text_operation margin-right">删除</text>
-						<text>"{{item.nxDdgDepGoodsName}}"</text>
-		</view> -->
+		<view class="operation_row flex-row" bindtap="addStandard" >
+			<image src="../../images/logo.jpg" class="operation_icon"></image>
+			<text class="text_operation margin-right">添加订货单位</text>
+						<!-- <text>"{{item.nxDdgDepGoodsName}}"</text> -->
+		</view>
 
 	</view>
 </view>

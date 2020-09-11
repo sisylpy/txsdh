@@ -36,8 +36,8 @@ Component({
     depStandardArr: {
       type: Array,
       value: []
-    }
-
+    },
+   
    
   
    
@@ -68,11 +68,17 @@ Component({
 
     confirm(e) {
       
-     
+     console.log(this.data.applyNumber + "applynamenrmer")
       if(this.data.applyNumber  > 0){
-        
+        var regex=/^[0]+/; //整数验证正则        
+        var apply = "";
+        if(this.data.applyNumber.indexOf(".") !== -1){
+          apply = this.data.applyNumber;
+        }else{
+          apply = this.data.applyNumber.replace(regex, "");
+        }
         this.triggerEvent('confirm', {
-          applyNumber: this.data.applyNumber,
+          applyNumber: apply ,
           applyStandardName: this.data.applyStandardName,
           applyRemark: this.data.applyRemark,
           isNotice: this.data.isNotice
@@ -91,6 +97,7 @@ Component({
       }else{
         wx.showToast({
           title: '数量只能填写数字',
+          icon: "none"
         })
       }
      
@@ -99,7 +106,6 @@ Component({
 
     standardchange: function(){
       var name = e.currentTarget.dataset.name;
-      console.log(e)
       this.triggerEvent('changeStandard', {
         applyStandardName: name
 
@@ -108,28 +114,84 @@ Component({
 
    
 
-   
-
+  
     getApplyNumber: function (e) {
-      console.log(e)
-      this.setData({
-       
-        applyNumber: e.detail.value
-      })
+    
+      var numberStr = this.data.applyNumber.toString();
+      var y = String(numberStr).indexOf(".") ;//获取小数点的位置
+      if(y !== -1){
+        var count = String(numberStr).length - y;//获取小数点后的个数
+      }
+
+      if(e.detail.value > 9999 ){
+        wx.showToast({
+          title: '最大不能超过9999',
+          icon: "none"
+        })
+      
+        this.setData({
+          applyNumber: numberStr.substring(0, numberStr.length ),
+        })
+        
+      } else if(count > 2 || count == 2){
+
+        wx.showToast({
+          title: '小数点只能保留一位',
+        })
+        this.setData({
+          applyNumber: numberStr.substring(0, numberStr.length - 1),
+        })
+      }
+      
+      else {
+        console.log(e.detail.value+ " else lide ")
+        if(e.detail.value > 0  || e.detail.value == 0){
+         
+
+          this.setData({
+            applyNumber: e.detail.value
+          })
+        }else{
+          wx.showToast({
+            title: '只能填写数字',
+            icon: 'none'
+          })
+
+          // var g
+          // var reg = new RegExp("([0]*)([1-9]+[0-9]+)", "g");
+
+          this.setData({
+            applyNumber: numberStr.substring(0, numberStr.length ),
+          })
+        }
+      }
+     
+     
     },
 
    
 
     addRemark: function (e) {
-      this.setData({
-        applyRemark: e.detail.value
-      })
+      if(e.detail.value.length < 15){
+        this.setData({
+          applyRemark: e.detail.value
+        })
+      }else{
+        wx.showToast({
+          title: '最多输入15个字符。',
+          icon:  'none'
+        })
+        var str = this.data.applyRemark;
+        this.setData({
+          applyRemark: str.substring(0, e.detail.value.length)
+        })
+      }
+      
 
     },
 
     changeStandard: function (e) {
       var name = e.currentTarget.dataset.name;
-      console.log(e)
       this.triggerEvent('changeStandard', {
         applyStandardName: name
 
@@ -139,7 +201,6 @@ Component({
     },
     switchChange(e){
       var value = e.detail.value;
-      console.log(value);
       if(value){
         this.setData({
           isNotice:  true

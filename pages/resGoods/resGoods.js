@@ -113,10 +113,7 @@ Page({
       //选择id
       query.select('#mjltest').boundingClientRect()
       query.exec(function (res) {
-        //res就是 所有标签为mjltest的元素的信息 的数组
-        console.log(res);
-        //取高度
-        console.log(res[0].height);
+        
         that.setData({
           maskHeight: res[0].height * globalData.rpxR
         })
@@ -143,7 +140,6 @@ Page({
         itemWidth = Math.ceil(res.windowWidth / that.data.tabs.length);
         let tempArr = [];
         for (let i in that.data.tabs) {
-          console.log(i)
           tempArr.push(itemWidth * i);
         }
         // tab 样式初始化
@@ -171,6 +167,7 @@ Page({
       sliderOffset: this.data.sliderOffsets[index],
       tab1Index: index,
       itemIndex: index,
+      showOperation:false
     })
   },
 
@@ -184,7 +181,6 @@ Page({
       if (index < this.data.tabs.length - 1) { //最后一页不能---->
         let ratio = dx / windowWidth; /*滑动比例*/
         let newOffset = ratio * itemWidth + this.data.sliderOffsets[index];
-        // console.log(newOffset,",index:",index);
         this.setData({
           sliderOffset: newOffset,
         })
@@ -193,7 +189,6 @@ Page({
       if (index > 0) { //最后一页不能<----
         let ratio = dx / windowWidth; /*滑动比例*/
         let newOffset = ratio * itemWidth + this.data.sliderOffsets[index];
-        console.log(newOffset, ",index:", index);
         this.setData({
           sliderOffset: newOffset,
         })
@@ -336,8 +331,7 @@ Page({
    */
   edit(){
     var item = this.data.independentArr[this.data.pareIndex].list[this.data.index];
-    console.log(item);
-    console.log("lamkankan item")
+   
     this.setData({
       showIndependent: true,
       editIndependent: true,
@@ -352,11 +346,10 @@ Page({
     deleteDepIndependentGoods(this.data.item.nxDepartmentIndependentGoodsId)
     .then(res =>{
       if(res.result.code == 0){
-        console.log(res);
         this._getDepIndependentGoods();
       }else{
         wx.showToast({
-          title: '删除商品失败',
+          title: res.result.msg,
           icon: 'none'
         })
       }
@@ -476,8 +469,11 @@ Page({
       load.hideLoading();
       if (res.result.code == 0) {
         var isShow = "independentArr["+ this.data.pareIndex +"].list[" + this.data.index +"].isShow"
-        this.setData({
-          [isShow]: true
+        // this.setData({
+        //   [isShow]: true
+        // })
+        wx.showToast({
+          title: '保存成功！',
         })
       }else{
         wx.showToast({
@@ -506,8 +502,6 @@ Page({
  */
  getFocus(e){
   var height = e.detail.myHeight;
-  console.log(height)
-
   this.setData({
     myHeight: (globalData.windowHeight - height) * globalData.rpxR
   })
@@ -522,7 +516,6 @@ Page({
    */
 
   touchStart: function(e){
-    // console.log(e.touches[0].pageX)
     let sx = e.touches[0].pageX
     let sy = e.touches[0].pageY
     this.data.touchS = [sx,sy]
@@ -535,8 +528,7 @@ Page({
   touchEnd: function(e){
     let start = this.data.touchS
     let end = this.data.touchE
-    console.log(start)
-    console.log(end)
+   
     if(this.data.touchS && this.data.touchE){
       if(start[1] < end[1] - 30){
         this.setData({

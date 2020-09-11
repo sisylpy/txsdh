@@ -62,6 +62,10 @@
 
 			<swiper-item>
 				<scroll-view scroll-y style="height:{{windowHeight - 120}}rpx">
+
+         <view ></view>
+
+
 					<view class=" whiteBack margin_bottom" wx:for="{{independentArr}}" wx:key="letter" wx:for-index="pareIndex">
 
 						<view class="whiteBack with-padding with-border-bottom flex-column">
@@ -97,7 +101,7 @@
 
 		<view class="with-padding flex-column-center with-border-bottom" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'>
 			<view class="close_line " style="width:{{windowWidth / 8}}rpx; "></view>
-			<view class="weight_five normal">自采购商品</view>
+			<view class="weight_five normal">{{item.nxDigGoodsName}}</view>
 		</view>
 
 
@@ -105,20 +109,20 @@
 			<view class="operation_row   flex-row" bindtap="applyIndependent">
 				<image src="../../images/order.png" class="operation_icon"></image>
 				<text class="text_operation margin-right">订货</text>
-				<text>"{{item.nxDigGoodsName}}"</text>
+				<!-- <text>"{{item.nxDigGoodsName}}"</text> -->
 
 			</view>
 
 			<view class="operation_row flex-row " bindtap="edit">
 				<image src="../../images/edit.png" class="operation_icon"></image>
 				<text class="text_operation margin-right">修改</text>
-					<text>"{{item.nxDigGoodsName}}"</text>
+					<!-- <text>"{{item.nxDigGoodsName}}"</text> -->
 			</view>
 
 			<view class="operation_row flex-row" bindtap="delete">
 				<image src="../../images/ashbin.png" class="operation_icon"></image>
 				<text class="text_operation margin-right">删除</text>
-				<text>"{{item.nxDigGoodsName}}"</text>
+				<!-- <text>"{{item.nxDigGoodsName}}"</text> -->
 
 			</view>
 

@@ -3,45 +3,39 @@
 
 	<!-- 顶部 -->
 	<view class='top flex-column-center '>
-		加入{{depName}}.订货群
+				<image src="../../images/dh.png" class='url'></image>
 
 	</view>
 
 	<view class='with-padding with-margin-top with-lr-margin' style='height: {{windowHeight - 240}}rpx; background:white;' bindtap="hideNumber">
 		<!-- 文字 -->
-
-	<!--  -->
 		<view class="flex-column-center">
 
 			<view class="flex-column-center">
-				<text class="first_row">大家从今天开始用手机订货吧！</text>
-				<text class="second_row">配送鲜 是专门为生鲜配送的微信小程序，完成多部门的采购任务。</text>
+				<text class="first_row">加入{{depName}}.订货群</text>
+				<text class="second_row">这个小程序可以完成生鲜配送商的订货和采购员自采购的订货。
+				</text>
 			</view>
 
-			<!-- <image src="../../images/shenqing_icon.png" class='url'></image> -->
 
 		</view>
 
 
 
 		<view class='type with-tb-padding {{role == 1 ? "hidden" : ""}}'>
-			<view class="with-tb-padding" style="font-size: 38rpx;font-weight: 500;">选择部门</view>
-			<view class="selcet_content">
+			<view class="with-tb-padding" style="font-size: 34rpx;font-weight: 500;">选择你所在的部门</view>
 				<view class="flex-row" style="margin-right:20rpx;">
 					<view class="flex-column">
 						<input class="numInput" style="width:{{windowWidth/2}}rpx; font-size: 40rpx;  height: 90rpx; line-height: 90rpx;padding-left: 20rpx; " disabled="true" value="{{selDepartmentName}}" catchtap="showDepartment"></input>
-						<scroll-view scroll-y class="result {{showDepartment ? 'is-active' : ''}}" style="width: {{windowWidth/2 + 20}}rpx; margin-top:90rpx;">
-							<view style="width:{{windowWidth/2 + 20}}rpx;padding: 10rpx 20rpx; background:rgb(224, 223, 223); border-bottom: 1px soild lightgray;" class="flex-column result-row" wx:for="{{subDepArr}}" wx:for-item="item" hover-class="hover" catchtap="selDepartment" data-id="{{item.nxDepartmentId}}" data-name="{{item.nxDepartmentName}}" wx:key="nxDepartmentId">
-								{{item.nxDepartmentName}}
-							</view>
-						</scroll-view>
 
 					</view>
 					<view class="nabla trigle" catchtap="showDepartment"></view>
-
 				</view>
-
-			</view>
+				<view class="result {{showDepartment ? 'is-active' : ''}}" style="width: {{windowWidth/2 + 20}}rpx;">
+					<view style="width:{{windowWidth/2 - 20}}rpx;" class="flex-column result-row" wx:for="{{subDepArr}}" wx:for-item="item" hover-class="hover" catchtap="selDepartment" data-id="{{item.nxDepartmentId}}" data-name="{{item.nxDepartmentName}}" wx:key="nxDepartmentId" hover-class="hover">
+						{{item.nxDepartmentName}}
+					</view>
+				</view>
 		</view>
 
 
@@ -51,11 +45,11 @@
 
 		<!-- 按钮 -->
 		<view class="flex-column-center " style="margin-top:40rpx;">
-			<button class="addBtn {{addFinished ? 'next' : ''}} "  data-type="0" open-type='getUserInfo' bindgetuserinfo='getUserInfo' plain='true' style="width: {{windowWidth - 80}}rpx;">注册</button>
+			<button class="addBtn {{addFinished ? 'next' : ''}} " data-type="0" open-type='getUserInfo' bindgetuserinfo='getUserInfo' plain='true' style="width: {{windowWidth - 80}}rpx;">注册</button>
 		</view>
 
 
-	<view class='log_btn'>
+		<view class='log_btn'>
 			<button class='' open-type='getUserInfo' bindgetuserinfo='getUserInfo' plain='true' style="width: {{windowWidth - 80}}rpx;" data-type="1">登陆</button>
 		</view>
 

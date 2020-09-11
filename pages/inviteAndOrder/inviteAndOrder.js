@@ -18,6 +18,14 @@ Page({
       subAmount: options.subAmount,
       depName: options.depName,
      
+      /**
+       * 这4个参数会来自另一个小程序，目前为审核顺利，写死这4个参数
+       */
+      // disId:1,
+      // depId:1,
+      // subAmount:2,
+      // depName: "桂林米粉"
+     
     })
 
   

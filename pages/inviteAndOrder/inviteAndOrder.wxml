@@ -3,7 +3,7 @@
 
 	<view class="top flex-column-center">
 		<text class="first_row">这个小程序将专门完成每日配送商品和自采购商品申请的订货申请。</text>
-		<text class="second_row"></text>
+		<!-- <text class="second_row">{{disId}}--{{depId}}=={{subAmount}}{{depName}}</text> -->
 	</view>
 </view>
 

@@ -23,36 +23,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-
-
     this.setData({
       windowWidth: globalData.windowWidth * globalData.rpxR,
       windowHeight: globalData.windowHeight * globalData.rpxR,
       depId: options.depId,
       disId: options.disId,
       depName: options.depName,
-     
-
     })
-
-
-
   },
 
 
-
-
-  //用户授权中链接socket
+  //用户授权
   getUserInfo: function (e) {
 
     //用户点击“确认”
     wx.getUserInfo({
       success: res => {
-
         wx.login({
           success: (res) => {
-
             // 注册接口
             if (e.currentTarget.dataset.type == 0) {
               var nxDepartmentUser = {
@@ -83,14 +71,10 @@ Page({
               depUserLogin(res.code)
                 .then((res) => {
                   wx.hideLoading()                
-                  if (res.result.code !== -1) {
-                    this.setData({
-                      userId: res.result.data.userInfo.nxDepartmentUserId,
-                    })
+                  if (res.result.code == 0) {
                     wx.redirectTo({
-                      url: '../../pages/index/index?userId=' + this.data.userId,
+                      url: '../../pages/index/index?userId=' + res.result.data.userInfo.nxDepartmentUserId,
                     })
-
                   } else {
                     load.hideLoading();
                     wx.showToast({
@@ -99,10 +83,8 @@ Page({
                   }
                 })
             }
-
           },
           fail: (res => {
-            console.log(res)
             wx.showToast({
               title: res,
             })
@@ -113,8 +95,6 @@ Page({
         wx.showToast({
           title: '请检查网络',
         })
-        console.log("quxiaole userinfo......")
-        // 获取失败的去引导用户授权 
       }
     })
   },

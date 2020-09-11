@@ -161,8 +161,7 @@ Page({
             title: '修改失败',
             icon: 'none'
           })
-        }
-        
+        }   
       })
     } else {
       //没有修改图片
@@ -180,7 +179,7 @@ Page({
       load.showLoading("保存修改内容");
       updateDepUser(data).then(res => {
         if (res.result.code == 0) {
-          load.hideLoading();
+        load.hideLoading();
         var pages = getCurrentPages();
         var prevPage = pages[pages.length - 2]; 
         prevPage.setData({
@@ -194,6 +193,7 @@ Page({
         wx.setStorageSync('depInfo', res.result.data.depInfo);
         wx.setStorageSync('userInfo', res.result.data.userInfo);
       }else{
+        load.hideLoading();
         wx.showToast({
           title: '获取信息失败',
           icon: 'none'

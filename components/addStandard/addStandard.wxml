@@ -9,7 +9,7 @@
 			<view class="">
         <text class="title">{{depGoodsName}}</text>
 				<view class="number1">
-					<input class='standardInput' focus='true' type='text' bindinput="getStandard" value='{{standardName}}' bindfocus="getFocus" placeholder="添加订货单位"/>
+					<input class='standardInput' focus='true' type='text' bindinput="getStandard" value='{{standardName}}' bindfocus="getFocus" placeholder="订货单位名称"/>
 				</view>
 			</view>
 
@@ -19,11 +19,7 @@
 				<view class='btn cancleBtn' bindtap="cancle" hover-class="hover">取消</view>
 			</view>
 
-		
-
-
-
-
+	
 		</view>
 
 	</view>

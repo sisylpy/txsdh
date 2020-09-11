@@ -26,7 +26,9 @@ Page({
     showOperation: false,
     showMyIndependent: false,
     depFatherId: null,
-    edit: false
+    edit: false,
+    deleteShow: false,
+
 
 
   },
@@ -55,7 +57,7 @@ Page({
       windowWidth: globalData.windowWidth * globalData.rpxR,
       windowHeight: globalData.windowHeight * globalData.rpxR,
       url: apiUrl.server,
-      userId: options.userId,    
+      userId: options.userId,
     })
      
     if(this.data.userId){
@@ -84,36 +86,39 @@ Page({
         })
         wx.setStorageSync('userInfo', res.result.data.userInfo);
 
-        //有部门，等待弹窗选择部门
+        //订货群有部门，等待弹窗选择部门
         if (res.result.data.depInfo.nxDepartmentSubAmount > 0) {
           this.setData({
             showChoice: true,
             subArr: res.result.data.depInfo.nxDepartmentEntities,
           })
         } else {
-          //没有部门
+          //没有下级部门
+          // 如果是群用户登陆
           if(res.result.data.depInfo.nxDepartmentIsGroupDep == 0){
             this.setData({
               depId: res.result.data.depInfo.nxDepartmentId,
               depFatherId: res.result.data.depInfo.nxDepartmentFatherId,
             })  
+
+            wx.setNavigationBarTitle({
+              title: this.data.depInfo.fatherDepartmentEntity.nxDepartmentName + ".订货群",
+            })
           }
+          //如果是部门用户登陆
           if(res.result.data.depInfo.nxDepartmentIsGroupDep == 1){
             this.setData({
               depId: res.result.data.depInfo.nxDepartmentId,
               depFatherId: res.result.data.depInfo.nxDepartmentId,
             })  
+            wx.setNavigationBarTitle({
+              title: this.data.depInfo.nxDepartmentName + ".订货群",
+            })
           }       
 
           wx.setStorageSync('depInfo', res.result.data.depInfo);
-
-          wx.setNavigationBarTitle({
-            title: this.data.depInfo.nxDepartmentName + ".订货群",
-          })
-
-
+       
           this._getDepApply();
-
         }
       }else{
         wx.showToast({
@@ -147,10 +152,6 @@ Page({
         //选择id
         query.select('#mjltest').boundingClientRect()
         query.exec(function (res) {
-          //res就是 所有标签为mjltest的元素的信息 的数组
-          console.log(res);
-          //取高度
-          console.log(res[0].height);
           that.setData({
             maskHeight: res[0].height * globalData.rpxR
           })
@@ -193,7 +194,6 @@ Page({
    * @param {}} e 
    */
   openOperation(e) {
-    console.log(e);
     this.setData({
       showOperation: true,
       applyItem: e.currentTarget.dataset.item,
@@ -326,7 +326,6 @@ Page({
 
 
     saveOrder(dg).then(res => {
-      console.log(res);
       if (res.result.code == 0) {
         this._getDepApply();
       }else{
@@ -401,7 +400,6 @@ Page({
     };
 
     saveOrder(order).then(res => {
-      console.log(res);
       if (res.result.code == 0) {
         this._getDepApply();
       }else{
@@ -474,11 +472,30 @@ Page({
    * 删除申请
    */
   deleteApply() {
+    this.setData({
+      deleteShow: true,
+      showOperation: true
+    })
+  },
+
+  deleteYes(){
+    this.setData({
+      deleteShow: false,    
+    })
     deleteOrder(this.data.applyItem.nxDepartmentOrdersId).then(res => {
       if (res.result.code == 0) {
         this._getDepApply();
+        
       }
     })
+  },
+  deleteNo(){
+    this.setData({
+      applyItem: "",
+      deleteShow: false,
+      showOperation: false
+    })
+
   },
 
 
@@ -540,7 +557,6 @@ Page({
    */
 
   touchStart: function(e){
-    // console.log(e.touches[0].pageX)
     let sx = e.touches[0].pageX
     let sy = e.touches[0].pageY
     this.data.touchS = [sx,sy]
@@ -553,9 +569,6 @@ Page({
   touchEnd: function(e){
     let start = this.data.touchS
     let end = this.data.touchE
-    console.log(start)
-    console.log(end)
-
     if(this.data.touchS && this.data.touchE){
       if(start[1] < end[1] - 30){
         this.setData({
